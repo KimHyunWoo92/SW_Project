@@ -1,0 +1,375 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+/* 로그인 버튼 css */
+#login-button-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+#logo-container img {
+  position: absolute;
+  margin: 35px 35px 35px 200px;
+  padding: 20px;
+  width: 120px;
+  /* 원하는 너비로 설정 */
+  height: auto;
+  /* 비율을 유지하면서 높이 자동 조절 */
+}
+
+/* 로그아웃 버튼 css */
+#logout-button-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+#show {
+  display: inline-block;
+  font-weight: bold;
+  color: #000;
+  text-decoration: none;
+  border-color: #000;
+  border-radius: 5px;
+  font-size: 20px;
+  text-align: center;
+  background-color: transparent;
+  width: 100px;
+  /* 화면에 고정 */
+  top : 5%;
+  /* 화면 하단에서 20px 위쪽 */
+  right: 5%;
+  /* 화면 오른쪽에서 20px 왼쪽 */
+  z-index: 1000;
+  /* 다른 요소들보다 위에 표시되도록 z-index 설정 */
+}
+
+#logoutshow {
+  display: inline-block;
+  padding: 10px 20px;
+  color: #fff;
+  /* 텍스트 색상 */
+  text-decoration: none;
+  /* 밑줄 제거 */
+  border-radius: 5px;
+  /* 모서리 둥글게 */
+  font-size: 20px;
+  /* 폰트 크기 */
+  text-align: center;
+  /* 텍스트 중앙 정렬 */
+  background-color: transparent;
+  /* 배경색 없음 */
+  width: 100px;
+  /* 버튼의 고정된 너비 */
+  margin: 2em 10em 0 0;
+}
+
+#show:hover {
+  font-weight: bold;
+  /* 호버 시 텍스트 굵게 */
+}
+
+#logoutshow:hover {
+  font-weight: bold;
+  /* 호버 시 텍스트 굵게 */
+}
+
+@media (max-width: 768px) {
+  #login-button-container {
+    top: 10px;
+    right: 10px;
+  }
+
+  #show {
+    font-size: 12px;
+    padding: 8px 16px;
+    width: 80px;
+    /* 모바일 화면에서는 너비를 줄임 */
+  }
+
+  #logoutshow {
+    font-size: 12px;
+    padding: 8px 16px;
+    width: 80px;
+    /* 모바일 화면에서는 너비를 줄임 */
+  }
+
+}
+
+/* 로그인을 누를 시 팝업이 뜨면서 배경을 검게 만듬 */
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  /* 색 및 투명도 조절 */
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+
+  /* 숨기기 X */
+  z-index: -1;
+  opacity: 0;
+}
+
+/* 로그인 버튼 클릭시 화면에 창 출력 */
+.show {
+  opacity: 1;
+  z-index: 1000;
+  transition: all .5s;
+}
+
+.show .login {
+  transition: all .5s;
+}
+
+
+/* 로그인/회원가입창 내부 css */
+h1 {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* -------------------------------------- 프로그래스바 ----------------------------------------- */
+#register_id_text,
+#register_nick_text {
+  color: red;
+  margin-bottom: -15px;
+  margin-top: -14px;
+  font-size: 12px;
+  min-height: 30px;
+}
+
+#pw_len {
+  margin-bottom: 0;
+  color: red;
+  display: none;
+  margin-bottom: -22px;
+  margin-top: -8px;
+  font-size: 12px;
+}
+
+/* #progress_bar 스타일 */
+#progress_bar {
+  display: flex;
+  margin-top: 0;
+  margin-bottom: -4px;
+}
+
+/* #sample 스타일 */
+#sample {
+  display: block;
+  margin-left: 22px;
+  height: 0px;
+}
+
+#meter {
+  appearance: none;
+  width: 220px;
+  display: block;
+  margin-top: 17px;
+  margin-left: 26px;
+  margin-bottom: 22px;
+}
+
+#meter::-webkit-progress-bar {
+  background: #f0f0f0;
+  border-radius: 10px;
+}
+
+#meter::-webkit-progress-value {
+  border-radius: 10px;
+  background: var(--c, red);
+}
+
+#meter[value]::-webkit-progress-value {
+  transition: width 0.5s;
+}
+
+/* --------------------------------------끝----------------------------------------- */
+
+.login {
+  margin: 0;
+  padding: 0;
+  color: #23004d;
+  font-size: 0.938rem;
+  font-family: "Open Sans", sans-serif;
+  display: grid;
+  grid-template-columns: 100%;
+  height: 100vh;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.login__content {
+  display: grid;
+}
+
+.login__forms {
+  position: relative;
+  height: 368px;
+}
+
+.login__register,
+.login__create {
+  position: absolute;
+  bottom: 1rem;
+  width: 100%;
+  background-color: #f2f2f2;
+  padding: 2rem 1rem;
+  border-radius: 1rem;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(35, 0, 77, 0.2);
+  animation-duration: 0.4s;
+  animation-name: animateLogin;
+}
+
+.login__title {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.login__box {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: 0.5rem;
+  padding: 1.125rem 1rem;
+  background-color: #fff;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.login__icon {
+  font-size: 1.5rem;
+  color: #E7AF9E;
+}
+
+.login__input {
+  border: none;
+  outline: none;
+  font-size: 0.938rem;
+  font-weight: 700;
+  color: #23004d;
+  width: 100%;
+}
+
+.login__input::placeholder {
+  font-size: 0.938rem;
+  font-family: "Open Sans", sans-serif;
+  color: #a49eac;
+}
+
+.login__forgot {
+  display: block;
+  width: max-content;
+  margin-left: auto;
+  margin-top: 0.5rem;
+  font-size: 0.813rem;
+  font-weight: 600;
+  color: #a49eac;
+}
+
+.login__button {
+  display: block;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #E7AF9E;
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 0.5rem;
+  transition: 0.3s;
+}
+
+.login__button:hover {
+  background-color: #f0d6ce;
+}
+
+.login__account,
+.login__signin,
+.login__signup {
+  font-weight: 600;
+  font-size: 0.813rem;
+}
+
+.login__account--account,
+.login__signin--account,
+.login__signup--account {
+  color: #23004d;
+}
+
+.login__account--signin,
+.login__account--signup,
+.login__signin--signin,
+.login__signin--signup,
+.login__signup--signin,
+.login__signup--signup {
+  color: #E7AF9E;
+  cursor: pointer;
+}
+
+.login__social {
+  margin-top: 2rem;
+}
+
+.login__social--icon {
+  font-size: 1.5rem;
+  color: #23004d;
+  margin: 0 1rem;
+}
+
+.block {
+  display: block;
+}
+
+.none {
+  display: none;
+}
+
+@keyframes animateLogin {
+  0% {
+    transform: scale(1, 1);
+  }
+
+  50% {
+    transform: scale(1.1, 1.1);
+  }
+
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .login__forms {
+    width: 348px;
+    justify-self: center;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .login {
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .login__content {
+    grid-template-columns: repeat(2, max-content);
+    justify-content: center;
+    align-items: center;
+    margin-top: 20rem;
+  }
+}
+
+/*# sourceMappingURL=login.css.map */
