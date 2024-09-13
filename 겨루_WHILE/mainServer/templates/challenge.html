@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/1de9391d12.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="../static/img/icon.png"/>
+    <title>WH:ILE</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/challenge.css">
+</head>
+
+<body>
+    <header>
+        {% include 'header.html' %}
+        <div class="second-header">
+            <ul>
+                <li><a href="javascript:showChalInfo()" class="active">챌린지</a></li>
+                <li><a href="javascript:showFeed()">피드</a></li>
+            </ul>
+        </div>
+    </header>
+    {% include 'nav.html' %}
+    <div class="main-body">
+        <section id="challenge">
+            <div class="challenge-info">
+                <img class="post-image" src="http://{{imgserver}}/getimg?id={{chInfo['IMG_ID']}}" alt="게시물이미지">
+                <div class="postdetail">
+                    <h3 class="post-title">{{chInfo['TITLE']}}</h3>
+                    <div class="date-row">
+                    </div>
+                    <div class="sub-row">
+                        <span class="post-info">{{adminName}}</span>
+                    </div>
+                    <div class="post-menu-startDay">
+                        <i class="fa-regular fa-flag"></i> 개설일자: <span>{{chInfo['CREATED_AT'].split(' ')[0]}}</span>
+                    </div>
+                    <div class="post-menu-container">
+                        <div class="post-menu" id="chal-like" onclick="chalLike(this)"><i class="fa-regular fa-heart"></i>좋아요 <span>{{chInfo['LIKE_LIST']|length}}</span></div>
+                        <div class="post-menu"><i class="fa-solid fa-users"></i>참여자 <span>{{chInfo['JOIN_LIST']|length}}</span></div>                       
+                    </div>
+                </div>
+            </div>
+            <div class="post-detail">
+                {{chInfo['DETAIL'].replace('\n', '<br>')|safe}}
+            </div>
+            {% if current_user.is_authenticated %}
+                {% if chInfo['ID'] in current_user.get_joinCh() %}
+                <div class="post-content">
+                    <p class="post-content-record"><i style="margin-right: 5px;" class="fa-solid fa-check"></i>참여기록</p>
+                    <div class="block-area">
+                    </div>
+                </div>
+                <div class="post-qual">
+                    <section id="form">
+                        <textarea class="confirm-content" id="content" placeholder="인증내용 입력" rows="10"></textarea>
+                        <div class="imageUpload-contain">
+                            <div class="image-preview">
+                                <img id="uploadImg" src="#" alt="preview">
+                            </div>
+                            <div class="buttons">
+                                <label for="uploadFile" class="upload-label">파일첨부</label>
+                                <a href="javascript:imgDel()" class="upload-label">취소</a>
+                            </div>
+                            <input type="file" id="uploadFile" name="image" accept="image/*">
+                        </div>
+                        <div class="button-group">
+                            <button id="submit-post">등록</button>
+                            <button id="join-challenge">챌린지 그만하기</button>
+                        </div>
+                    </section>
+                </div>
+                {% else %}
+                <div class="button-group">
+                    <button id="join-challenge">챌린지 참여하기</button>
+                </div>
+                {% endif %}
+            {% endif %}
+        </section>
+        <section id="feed">
+            <div class="feedloader"></div>
+            
+        </section>
+    </div>
+    <footer>
+        {% include 'footer.html' %}
+    </footer>
+    {% if current_user.is_authenticated %}
+    <script>
+        const imgserver = '{{imgserver}}';
+        const userId = "{{current_user.get_id()}}";
+    </script>
+    {% endif %}
+    <script src="../static/js/challenge.js"></script>
+</body>
+
+</html>
